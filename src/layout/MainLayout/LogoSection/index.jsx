@@ -4,14 +4,14 @@ import { Link as RouterLink } from 'react-router-dom';
 import Link from '@mui/material/Link';
 
 // project imports
-import { DASHBOARD_PATH } from 'config';
 import Logo from 'ui-component/Logo';
-import Typography from '@mui/material/Typography';
+
 // ==============================|| MAIN LOGO ||============================== //
 
 export default function LogoSection() {
   return (
-    <Link component={RouterLink} to={DASHBOARD_PATH} aria-label="theme-logo">
+    // Hardcoded to always go to the main Dashboard
+    <Link component={RouterLink} to="/dashboard/default" aria-label="theme-logo">
       <Logo />
     </Link>
   );

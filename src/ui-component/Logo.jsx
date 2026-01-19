@@ -1,33 +1,28 @@
-import Box from '@mui/material/Box';
+// material-ui
+import { useTheme } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
+import Stack from '@mui/material/Stack';
 
-export default function Logo() {
-  return (
-    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-      <Box
-        sx={{
-          width: 32,
-          height: 32,
-          border: '2px solid #fff',
-          borderRadius: '8px',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center'
-        }}
-      >
-        <Typography sx={{ fontWeight: 800, fontSize: '1.2rem', color: '#fff' }}>
-        F
-        </Typography>
-      </Box>
-      <Typography
-        sx={{
-          fontSize: '1.4rem',
-          fontWeight: 700,
-          color: '#ffffff',
-          letterSpacing: '0.5px'
-        }}>Frolic-EMS
-      </Typography>
-    </Box>
-  );
-}
+// ==============================|| LOGO SVG ||============================== //
 
+const Logo = () => {
+    const theme = useTheme();
+
+    return (
+        <Stack direction="row" alignItems="center" spacing={1}>
+            {/* Optional: You can keep an icon here if you want, or just text */}
+            <Typography 
+                variant="h3" 
+                sx={{ 
+                    fontWeight: 700, 
+                    color: theme.palette.secondary.main, // Uses the theme's purple color
+                    letterSpacing: '0.5px'
+                }}
+            >
+                Frolic-EMS
+            </Typography>
+        </Stack>
+    );
+};
+
+export default Logo;

@@ -1,31 +1,23 @@
 // assets
-import { IconBrandChrome, IconHelp } from '@tabler/icons-react';
+import { IconBuildingFactory2 } from '@tabler/icons-react'; // Changed icon
 
 // constant
-const icons = { IconBrandChrome, IconHelp };
+const icons = { IconBuildingFactory2 };
 
-// ==============================|| SAMPLE PAGE & DOCUMENTATION MENU ITEMS ||============================== //
+// ==============================|| OTHER MENU ITEMS ||============================== //
 
 const other = {
-  id: 'sample-docs-roadmap',
+  id: 'forms', // Changed ID to 'forms'
+  title: 'Forms', // Changed Title to 'Forms'
   type: 'group',
   children: [
     {
-      id: 'sample-page',
-      title: 'Sample Page',
+      id: 'add-institute', // Changed ID
+      title: 'Add Institute', // Changed Title (Week 3 Task)
       type: 'item',
-      url: '/sample-page',
-      icon: icons.IconBrandChrome,
+      url: '/sample-page', // We keep the same file path to make it easy
+      icon: icons.IconBuildingFactory2,
       breadcrumbs: false
-    },
-    {
-      id: 'documentation',
-      title: 'Documentation',
-      type: 'item',
-      url: 'https://codedthemes.gitbook.io/berry/',
-      icon: icons.IconHelp,
-      external: true,
-      target: true
     }
   ]
 };

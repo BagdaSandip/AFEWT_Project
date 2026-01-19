@@ -19,7 +19,8 @@ import { withAlpha } from 'utils/colorUtils';
 
 // assets
 import { IconBrandTelegram, IconBuildingStore, IconMailbox, IconPhoto } from '@tabler/icons-react';
-import User1 from 'assets/images/users/user-round.svg';
+
+// REMOVED: import User1 from 'assets/images/users/user-round.svg';
 
 function ListItemWrapper({ children }) {
   const theme = useTheme();
@@ -59,9 +60,10 @@ export default function NotificationList() {
           }
         >
           <ListItemAvatar>
-            <Avatar alt="John Doe" src={User1} />
+            {/* Removed src={User1}, now it will show "S" for Sandip */}
+            <Avatar alt="Sandip Bagda" />
           </ListItemAvatar>
-          <ListItemText primary="John Doe" />
+          <ListItemText primary="Sandip Bagda"/>
         </ListItem>
         <Stack sx={containerSX}>
           <Typography variant="subtitle2">It is a long established fact that a reader will be distracted</Typography>
@@ -138,9 +140,10 @@ export default function NotificationList() {
           }
         >
           <ListItemAvatar>
-            <Avatar alt="John Doe" src={User1} />
+            {/* Removed src={User1} */}
+            <Avatar alt="Sandip Bagda" />
           </ListItemAvatar>
-          <ListItemText primary={<Typography variant="subtitle1">John Doe</Typography>} />
+          <ListItemText primary={<Typography variant="subtitle1">Sandip Bagda</Typography>} />
         </ListItem>
         <Stack sx={containerSX}>
           <Typography component="span" variant="subtitle2">
@@ -168,9 +171,10 @@ export default function NotificationList() {
           }
         >
           <ListItemAvatar>
-            <Avatar alt="John Doe" src={User1} />
+            {/* Removed src={User1} */}
+            <Avatar alt="Sandip Bagda" />
           </ListItemAvatar>
-          <ListItemText primary={<Typography variant="subtitle1">John Doe</Typography>} />
+          <ListItemText primary={<Typography variant="subtitle1">Sandip Bagda</Typography>} />
         </ListItem>
         <Stack sx={containerSX}>
           <Typography variant="subtitle2">It is a long established fact that a reader will be distracted</Typography>

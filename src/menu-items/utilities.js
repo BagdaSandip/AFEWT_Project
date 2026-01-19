@@ -9,34 +9,34 @@ const icons = {
   IconWindmill
 };
 
-// ==============================|| UTILITIES MENU ITEMS ||============================== //
+// ==============================|| MANAGEMENT MENU ITEMS ||============================== //
 
 const utilities = {
-  id: 'utilities',
-  title: 'Utilities',
+  id: 'management', // Changed ID to be more relevant
+  title: 'Management', // Changed Title from 'Utilities' to 'Management'
   type: 'group',
   children: [
     {
-      id: 'util-typography',
-      title: 'Typography',
+      id: 'institutes', // Changed ID
+      title: 'Institutes', // Changed Title (Week 1 Task)
       type: 'item',
-      url: '/typography',
+      url: '/typography', // Keeps pointing to the same file for now so it doesn't break
       icon: icons.IconTypography,
       breadcrumbs: false
     },
     {
-      id: 'util-color',
-      title: 'Color',
+      id: 'departments', // Changed ID
+      title: 'Departments', // Changed Title (Week 1 Task)
       type: 'item',
-      url: '/color',
+      url: '/color', // Keeps pointing to the same file
       icon: icons.IconPalette,
       breadcrumbs: false
     },
     {
-      id: 'util-shadow',
-      title: 'Shadow',
+      id: 'events', // Changed ID
+      title: 'Events', // Changed Title (Week 1 Task)
       type: 'item',
-      url: '/shadow',
+      url: '/shadow', // Keeps pointing to the same file
       icon: icons.IconShadow,
       breadcrumbs: false
     }

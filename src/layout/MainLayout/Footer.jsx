@@ -8,32 +8,27 @@ import Typography from '@mui/material/Typography';
 export default function Footer() {
   return (
     <Stack direction="row" sx={{ alignItems: 'center', justifyContent: 'space-between', pt: 3, mt: 'auto' }}>
+      {/* Left Side: Project Name */}
       <Typography variant="caption">
-        &copy; All rights reserved{' '}
-        <Typography component={Link} href="https://codedthemes.com" underline="hover" target="_blank" sx={{ color: 'secondary.main' }}>
-          CodedThemes
+        &copy; 2026{' '}
+        <Typography component="span" sx={{ color: 'secondary.main', fontWeight: 'bold' }}>
+          Frolic Event Management System
         </Typography>
       </Typography>
+
+      {/* Right Side: Team Name or Credits */}
       <Stack direction="row" sx={{ gap: 1.5, alignItems: 'center', justifyContent: 'space-between' }}>
+        <Typography variant="caption" color="text.primary">
+          Team Frolic {/* <--- CHANGE THIS TEXT TO YOUR NAME IF YOU WANT */}
+        </Typography>
         <Link
           component={RouterLink}
-          to="https://github.com/codedthemes/berry-free-react-admin-template"
+          to="#"
           underline="hover"
-          target="_blank"
           variant="caption"
           color="text.primary"
         >
-          GitHub
-        </Link>
-        <Link
-          component={RouterLink}
-          to="https://www.figma.com/community/file/1468460364009262125/berry-free-dashboard-ui-kit"
-          underline="hover"
-          target="_blank"
-          variant="caption"
-          color="text.primary"
-        >
-          Figma UI Kit
+          Contact Admin
         </Link>
       </Stack>
     </Stack>
