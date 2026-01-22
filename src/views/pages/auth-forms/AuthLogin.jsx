@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 // material-ui
 import Button from '@mui/material/Button';
@@ -21,12 +21,14 @@ import CustomFormControl from 'ui-component/extended/Form/CustomFormControl';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
-// ===============================|| JWT - LOGIN ||=============================== //
+// ===============================|| AUTH LOGIN ||=============================== //
 
 export default function AuthLogin() {
   const [checked, setChecked] = useState(true);
-
   const [showPassword, setShowPassword] = useState(false);
+
+  const navigate = useNavigate(); // ✅ navigation hook
+
   const handleClickShowPassword = () => {
     setShowPassword(!showPassword);
   };
@@ -35,15 +37,33 @@ export default function AuthLogin() {
     event.preventDefault();
   };
 
+  // ✅ LOGIN HANDLER (THIS WAS MISSING)
+  const handleLogin = () => {
+    // temporary login success
+    localStorage.setItem('isLoggedIn', 'true');
+
+    // redirect to dashboard
+    navigate('/dashboard/default');
+  };
+
   return (
     <>
       <CustomFormControl fullWidth>
-        <InputLabel htmlFor="outlined-adornment-email-login">Email Address / Username</InputLabel>
-        <OutlinedInput id="outlined-adornment-email-login" type="email" value="info@codedthemes.com" name="email" />
+        <InputLabel htmlFor="outlined-adornment-email-login">
+          Email Address / Username
+        </InputLabel>
+        <OutlinedInput
+          id="outlined-adornment-email-login"
+          type="email"
+          value="info@codedthemes.com"
+          name="email"
+        />
       </CustomFormControl>
 
       <CustomFormControl fullWidth>
-        <InputLabel htmlFor="outlined-adornment-password-login">Password</InputLabel>
+        <InputLabel htmlFor="outlined-adornment-password-login">
+          Password
+        </InputLabel>
         <OutlinedInput
           id="outlined-adornment-password-login"
           type={showPassword ? 'text' : 'password'}
@@ -69,19 +89,38 @@ export default function AuthLogin() {
       <Grid container sx={{ alignItems: 'center', justifyContent: 'space-between' }}>
         <Grid>
           <FormControlLabel
-            control={<Checkbox checked={checked} onChange={(event) => setChecked(event.target.checked)} name="checked" color="primary" />}
+            control={
+              <Checkbox
+                checked={checked}
+                onChange={(event) => setChecked(event.target.checked)}
+                name="checked"
+                color="primary"
+              />
+            }
             label="Keep me logged in"
           />
         </Grid>
         <Grid>
-          <Typography variant="subtitle1" component={Link} to="#!" sx={{ textDecoration: 'none', color: 'secondary.main' }}>
+          <Typography
+            variant="subtitle1"
+            component={Link}
+            to="#!"
+            sx={{ textDecoration: 'none', color: 'secondary.main' }}
+          >
             Forgot Password?
           </Typography>
         </Grid>
       </Grid>
+
       <Box sx={{ mt: 2 }}>
         <AnimateButton>
-          <Button color="secondary" fullWidth size="large" type="submit" variant="contained">
+          <Button
+            color="secondary"
+            fullWidth
+            size="large"
+            variant="contained"
+            onClick={handleLogin}   // ✅ CONNECTED HERE
+          >
             Sign In
           </Button>
         </AnimateButton>

@@ -130,6 +130,8 @@ export default function SearchSection() {
           )}
         </PopupState>
       </Box>
+
+      {/* DESKTOP SEARCH SECTION - MODIFIED HERE */}
       <Box sx={{ display: { xs: 'none', md: 'block' } }}>
         <OutlinedInput
           id="input-search-header"
@@ -150,7 +152,10 @@ export default function SearchSection() {
           }
           aria-describedby="search-helper-text"
           slotProps={{ input: { 'aria-label': 'weight', sx: { bgcolor: 'transparent', pl: 0.5 } } }}
-          sx={{ width: { md: 250, lg: 434 }, ml: 2, px: 2 }}
+          /* I updated the width below. 
+             You can change '500px' to whatever size fits your Frolic-EMS layout best. 
+          */
+          sx={{ width: { md: '400px', lg: '600px' }, ml: 2, px: 2 }}
         />
       </Box>
     </>

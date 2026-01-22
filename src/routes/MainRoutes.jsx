@@ -22,17 +22,12 @@ const MainRoutes = {
   element: <MainLayout />,
   children: [
     {
-      path: '/',
+      index: true,            
       element: <DashboardDefault />
     },
     {
-      path: 'dashboard',
-      children: [
-        {
-          path: 'default',
-          element: <DashboardDefault />
-        }
-      ]
+      path: '/dashboard/default',         
+      element: <DashboardDefault />
     },
     {
       path: 'typography',
@@ -40,19 +35,17 @@ const MainRoutes = {
     },
     {
       path: 'color',
-      element: <UtilsColor />
+      element: <UtilsColor /> 
     },
     {
       path: 'shadow',
       element: <UtilsShadow />
     },
     {
-      path: '/sample-page',
+      path: 'sample-page',
       element: <SamplePage />
     }
   ]
 };
 
-export default MainRoutes; 
-
-
+export default MainRoutes;

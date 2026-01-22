@@ -4,7 +4,7 @@ import { lazy } from 'react';
 import Loadable from 'ui-component/Loadable';
 import MinimalLayout from 'layout/MinimalLayout';
 
-// maintenance routing
+// authentication pages
 const LoginPage = Loadable(lazy(() => import('views/pages/authentication/Login')));
 const RegisterPage = Loadable(lazy(() => import('views/pages/authentication/Register')));
 
@@ -15,11 +15,15 @@ const AuthenticationRoutes = {
   element: <MinimalLayout />,
   children: [
     {
-      path: '/pages/login',
+      index: true,
       element: <LoginPage />
     },
     {
-      path: '/pages/register',
+      path: 'pages/login',
+      element: <LoginPage />
+    },
+    {
+      path: 'pages/register',
       element: <RegisterPage />
     }
   ]
