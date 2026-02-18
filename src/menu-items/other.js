@@ -1,8 +1,8 @@
 // assets
-import { IconBuildingFactory2 } from '@tabler/icons-react'; // Changed icon
+import { IconBuildingFactory2, IconHierarchy2, IconCalendarEvent, IconUsersGroup, IconUserPlus } from '@tabler/icons-react';
 
 // constant
-const icons = { IconBuildingFactory2 };
+const icons = { IconBuildingFactory2, IconHierarchy2, IconCalendarEvent, IconUsersGroup, IconUserPlus };
 
 // ==============================|| OTHER MENU ITEMS ||============================== //
 
@@ -12,11 +12,43 @@ const other = {
   type: 'group',
   children: [
     {
-      id: 'add-institute', // Changed ID
-      title: 'Add Institute', // Changed Title (Week 3 Task)
+      id: 'add-institute',
+      title: 'Add Institute',
       type: 'item',
-      url: '/sample-page', // We keep the same file path to make it easy
+      url: '/sample-page',
       icon: icons.IconBuildingFactory2,
+      breadcrumbs: false
+    },
+    {
+      id: 'add-department',
+      title: 'Add Department',
+      type: 'item',
+      url: '/forms/add-department',
+      icon: icons.IconHierarchy2,
+      breadcrumbs: false
+    },
+    {
+      id: 'add-event',
+      title: 'Add Event',
+      type: 'item',
+      url: '/forms/add-event',
+      icon: icons.IconCalendarEvent,
+      breadcrumbs: false
+    },
+    {
+      id: 'add-group',
+      title: 'Add Group',
+      type: 'item',
+      url: '/forms/add-group',
+      icon: icons.IconUsersGroup,
+      breadcrumbs: false
+    },
+    {
+      id: 'add-participant',
+      title: 'Add Participant',
+      type: 'item',
+      url: '/forms/add-participant',
+      icon: icons.IconUserPlus,
       breadcrumbs: false
     }
   ]

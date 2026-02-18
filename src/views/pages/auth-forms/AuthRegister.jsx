@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 // material-ui
 import Button from '@mui/material/Button';
@@ -14,6 +14,7 @@ import OutlinedInput from '@mui/material/OutlinedInput';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
+import CircularProgress from '@mui/material/CircularProgress'; // Added CircularProgress
 
 // project imports
 import AnimateButton from 'ui-component/extended/AnimateButton';
@@ -29,9 +30,17 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 export default function AuthRegister() {
   const [showPassword, setShowPassword] = useState(false);
   const [checked, setChecked] = useState(true);
+  const [isLoading, setIsLoading] = useState(false); // Added loading state
 
   const [strength, setStrength] = useState(0);
   const [level, setLevel] = useState();
+
+  const [fname, setFname] = useState('');
+  const [lname, setLname] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const navigate = useNavigate();
 
   const handleClickShowPassword = () => {
     setShowPassword(!showPassword);
@@ -45,10 +54,22 @@ export default function AuthRegister() {
     const temp = strengthIndicator(value);
     setStrength(temp);
     setLevel(strengthColor(temp));
+    setPassword(value);
+  };
+
+  const handleRegister = () => {
+    setIsLoading(true); // Start loading
+    // Simulate API call
+    setTimeout(() => {
+      // temporary login success
+      localStorage.setItem('isLoggedIn', 'true');
+      setIsLoading(false);
+      navigate('/dashboard/default');
+    }, 1500);
   };
 
   useEffect(() => {
-    changePassword('123456');
+    changePassword('');
   }, []);
 
   return (
@@ -61,19 +82,37 @@ export default function AuthRegister() {
         <Grid size={{ xs: 12, sm: 6 }}>
           <CustomFormControl fullWidth>
             <InputLabel htmlFor="outlined-adornment-first-register">First Name</InputLabel>
-            <OutlinedInput id="outlined-adornment-first-register" type="text" name="firstName" value="Jhones" />
+            <OutlinedInput
+              id="outlined-adornment-first-register"
+              type="text"
+              name="firstName"
+              value={fname}
+              onChange={(e) => setFname(e.target.value)}
+            />
           </CustomFormControl>
         </Grid>
         <Grid size={{ xs: 12, sm: 6 }}>
           <CustomFormControl fullWidth>
             <InputLabel htmlFor="outlined-adornment-last-register">Last Name</InputLabel>
-            <OutlinedInput id="outlined-adornment-last-register" type="text" name="lastName" value="Doe" />
+            <OutlinedInput
+              id="outlined-adornment-last-register"
+              type="text"
+              name="lastName"
+              value={lname}
+              onChange={(e) => setLname(e.target.value)}
+            />
           </CustomFormControl>
         </Grid>
       </Grid>
       <CustomFormControl fullWidth>
         <InputLabel htmlFor="outlined-adornment-email-register">Email Address / Username</InputLabel>
-        <OutlinedInput id="outlined-adornment-email-register" type="email" value="jones@doe.com" name="email" />
+        <OutlinedInput
+          id="outlined-adornment-email-register"
+          type="email"
+          value={email}
+          name="email"
+          onChange={(e) => setEmail(e.target.value)}
+        />
       </CustomFormControl>
 
       <CustomFormControl fullWidth>
@@ -81,9 +120,10 @@ export default function AuthRegister() {
         <OutlinedInput
           id="outlined-adornment-password-register"
           type={showPassword ? 'text' : 'password'}
-          value="Jhones@123"
+          value={password}
           name="password"
           label="Password"
+          onChange={(e) => changePassword(e.target.value)}
           endAdornment={
             <InputAdornment position="end">
               <IconButton
@@ -127,8 +167,17 @@ export default function AuthRegister() {
 
       <Box sx={{ mt: 2 }}>
         <AnimateButton>
-          <Button disableElevation fullWidth size="large" type="submit" variant="contained" color="secondary">
-            Sign up
+          <Button
+            disableElevation
+            disabled={isLoading} // Disable while loading
+            fullWidth
+            size="large"
+            type="button"
+            variant="contained"
+            color="secondary"
+            onClick={handleRegister}
+          >
+            {isLoading ? <CircularProgress size={24} color="inherit" /> : 'Sign up'}
           </Button>
         </AnimateButton>
       </Box>

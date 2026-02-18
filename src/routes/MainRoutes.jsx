@@ -15,6 +15,12 @@ const UtilsShadow = Loadable(lazy(() => import('views/utilities/Shadow')));
 // sample page routing
 const SamplePage = Loadable(lazy(() => import('views/sample-page')));
 
+// forms routing
+const AddDepartment = Loadable(lazy(() => import('views/forms/AddDepartment')));
+const AddEvent = Loadable(lazy(() => import('views/forms/AddEvent')));
+const AddGroup = Loadable(lazy(() => import('views/forms/AddGroup')));
+const AddParticipant = Loadable(lazy(() => import('views/forms/AddParticipant')));
+
 // ==============================|| MAIN ROUTING ||============================== //
 
 const MainRoutes = {
@@ -22,11 +28,11 @@ const MainRoutes = {
   element: <MainLayout />,
   children: [
     {
-      index: true,            
+      index: true,
       element: <DashboardDefault />
     },
     {
-      path: '/dashboard/default',         
+      path: '/dashboard/default',
       element: <DashboardDefault />
     },
     {
@@ -35,7 +41,7 @@ const MainRoutes = {
     },
     {
       path: 'color',
-      element: <UtilsColor /> 
+      element: <UtilsColor />
     },
     {
       path: 'shadow',
@@ -44,6 +50,22 @@ const MainRoutes = {
     {
       path: 'sample-page',
       element: <SamplePage />
+    },
+    {
+      path: '/forms/add-department',
+      element: <AddDepartment />
+    },
+    {
+      path: '/forms/add-event',
+      element: <AddEvent />
+    },
+    {
+      path: '/forms/add-group',
+      element: <AddGroup />
+    },
+    {
+      path: '/forms/add-participant',
+      element: <AddParticipant />
     }
   ]
 };

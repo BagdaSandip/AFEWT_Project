@@ -3,6 +3,9 @@ import { useTheme } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
 
+// assets
+import { IconBrandAbstract } from '@tabler/icons-react';
+
 // ==============================|| LOGO SVG ||============================== //
 
 const Logo = () => {
@@ -10,17 +13,32 @@ const Logo = () => {
 
     return (
         <Stack direction="row" alignItems="center" spacing={1}>
-            {/* Optional: You can keep an icon here if you want, or just text */}
-            <Typography 
-                variant="h3" 
-                sx={{ 
-                    fontWeight: 700, 
-                    color: theme.palette.secondary.main, // Uses the theme's purple color
-                    letterSpacing: '0.5px'
-                }}
-            >
-                Frolic-EMS
-            </Typography>
+            <IconBrandAbstract size={32} color={theme.palette.secondary.main} stroke={1.5} />
+            <Stack spacing={-0.5}>
+                <Typography
+                    variant="h3"
+                    sx={{
+                        fontWeight: 700,
+                        color: theme.palette.secondary.main,
+                        letterSpacing: '1px',
+                        textTransform: 'uppercase'
+                    }}
+                >
+                    Frolic
+                </Typography>
+                <Typography
+                    variant="caption"
+                    sx={{
+                        fontWeight: 600,
+                        color: theme.palette.text.primary,
+                        letterSpacing: '2px',
+                        textTransform: 'uppercase',
+                        fontSize: '0.65rem'
+                    }}
+                >
+                    EMS
+                </Typography>
+            </Stack>
         </Stack>
     );
 };

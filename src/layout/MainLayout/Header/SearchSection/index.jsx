@@ -152,10 +152,19 @@ export default function SearchSection() {
           }
           aria-describedby="search-helper-text"
           slotProps={{ input: { 'aria-label': 'weight', sx: { bgcolor: 'transparent', pl: 0.5 } } }}
-          /* I updated the width below. 
-             You can change '500px' to whatever size fits your Frolic-EMS layout best. 
-          */
-          sx={{ width: { md: '400px', lg: '600px' }, ml: 2, px: 2 }}
+          sx={{
+            width: { md: '400px', lg: '500px' },
+            ml: 2,
+            px: 2,
+            bgcolor: 'grey.50',
+            borderRadius: '12px',
+            '& .MuiOutlinedInput-notchedOutline': {
+              borderColor: 'grey.300'
+            },
+            '&:hover .MuiOutlinedInput-notchedOutline': {
+              borderColor: 'primary.main'
+            }
+          }}
         />
       </Box>
     </>

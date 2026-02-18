@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 
 // material-ui components
-import { 
-  Grid, 
-  TextField, 
-  Button, 
-  Card, 
-  CardContent, 
+import {
+  Grid,
+  TextField,
+  Button,
+  Card,
+  CardContent,
   Typography,
-  Stack 
+  Stack,
+  CircularProgress
 } from '@mui/material';
 
 // project imports
@@ -24,6 +25,7 @@ const AddInstitutePage = () => {
     code: '',
     location: ''
   });
+  const [isLoading, setIsLoading] = useState(false); // Added loading state
 
   // Handle input changes
   const handleChange = (prop) => (event) => {
@@ -32,10 +34,15 @@ const AddInstitutePage = () => {
 
   // Handle dummy submission (Week 3 Requirement)
   const handleSubmit = () => {
-    console.log('Form Submitted with Data:', values);
-    alert('Institute Added! (Check Console for Data)');
-    // Reset form
-    setValues({ name: '', code: '', location: '' });
+    setIsLoading(true); // Start loading
+    // Simulate API call
+    setTimeout(() => {
+      console.log('Form Submitted with Data:', values);
+      alert('Institute Added! (Check Console for Data)');
+      // Reset form
+      setValues({ name: '', code: '', location: '' });
+      setIsLoading(false); // Stop loading
+    }, 1500);
   };
 
   return (
@@ -88,11 +95,11 @@ const AddInstitutePage = () => {
                 {/* Submit Button */}
                 <Grid item xs={12}>
                   <Stack direction="row" spacing={2} justifyContent="flex-end">
-                    <Button variant="outlined" color="error" onClick={() => setValues({ name: '', code: '', location: '' })}>
+                    <Button variant="outlined" color="error" onClick={() => setValues({ name: '', code: '', location: '' })} disabled={isLoading}>
                       Clear
                     </Button>
-                    <Button variant="contained" color="primary" onClick={handleSubmit}>
-                      Add Institute
+                    <Button variant="contained" color="primary" onClick={handleSubmit} disabled={isLoading}>
+                      {isLoading ? <CircularProgress size={24} color="inherit" /> : 'Add Institute'}
                     </Button>
                   </Stack>
                 </Grid>

@@ -1,12 +1,15 @@
 // assets
-import { IconTypography, IconPalette, IconShadow, IconWindmill } from '@tabler/icons-react';
+import { IconTypography, IconPalette, IconShadow, IconWindmill, IconSchool, IconHierarchy2, IconCalendarEvent } from '@tabler/icons-react';
 
 // constant
 const icons = {
   IconTypography,
   IconPalette,
   IconShadow,
-  IconWindmill
+  IconWindmill,
+  IconSchool,
+  IconHierarchy2,
+  IconCalendarEvent
 };
 
 // ==============================|| MANAGEMENT MENU ITEMS ||============================== //
@@ -21,7 +24,7 @@ const utilities = {
       title: 'Institutes', // Changed Title (Week 1 Task)
       type: 'item',
       url: '/typography', // Keeps pointing to the same file for now so it doesn't break
-      icon: icons.IconTypography,
+      icon: icons.IconSchool,
       breadcrumbs: false
     },
     {
@@ -29,7 +32,7 @@ const utilities = {
       title: 'Departments', // Changed Title (Week 1 Task)
       type: 'item',
       url: '/color', // Keeps pointing to the same file
-      icon: icons.IconPalette,
+      icon: icons.IconHierarchy2,
       breadcrumbs: false
     },
     {
@@ -37,7 +40,7 @@ const utilities = {
       title: 'Events', // Changed Title (Week 1 Task)
       type: 'item',
       url: '/shadow', // Keeps pointing to the same file
-      icon: icons.IconShadow,
+      icon: icons.IconCalendarEvent,
       breadcrumbs: false
     }
   ]

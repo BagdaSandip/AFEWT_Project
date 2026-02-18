@@ -12,6 +12,7 @@ import InputLabel from '@mui/material/InputLabel';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
+import CircularProgress from '@mui/material/CircularProgress'; // Added CircularProgress
 
 // project imports
 import AnimateButton from 'ui-component/extended/AnimateButton';
@@ -26,6 +27,7 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 export default function AuthLogin() {
   const [checked, setChecked] = useState(true);
   const [showPassword, setShowPassword] = useState(false);
+  const [isLoading, setIsLoading] = useState(false); // Added loading state
 
   const navigate = useNavigate(); // ✅ navigation hook
 
@@ -39,11 +41,16 @@ export default function AuthLogin() {
 
   // ✅ LOGIN HANDLER (THIS WAS MISSING)
   const handleLogin = () => {
-    // temporary login success
-    localStorage.setItem('isLoggedIn', 'true');
+    setIsLoading(true); // Start loading
 
-    // redirect to dashboard
-    navigate('/dashboard/default');
+    // Simulate API call
+    setTimeout(() => {
+      // temporary login success
+      localStorage.setItem('isLoggedIn', 'true');
+      setIsLoading(false); // Stop loading (optional as we navigate away)
+      // redirect to dashboard
+      navigate('/dashboard/default');
+    }, 1500);
   };
 
   return (
@@ -115,13 +122,16 @@ export default function AuthLogin() {
       <Box sx={{ mt: 2 }}>
         <AnimateButton>
           <Button
-            color="secondary"
+            disableElevation
+            disabled={isLoading} // Disable while loading
             fullWidth
             size="large"
+            type="button"
             variant="contained"
+            color="secondary"
             onClick={handleLogin}   // ✅ CONNECTED HERE
           >
-            Sign In
+            {isLoading ? <CircularProgress size={24} color="inherit" /> : 'Sign In'}
           </Button>
         </AnimateButton>
       </Box>
