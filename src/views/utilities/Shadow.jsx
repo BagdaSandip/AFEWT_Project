@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 
-// material-ui components
 import {
   Grid,
   Typography,
@@ -17,13 +16,9 @@ import {
   TablePagination
 } from '@mui/material';
 
-// project imports
 import MainCard from 'ui-component/cards/MainCard';
 import { gridSpacing } from 'store/constant';
 
-// ==============================|| EVENTS LIST PAGE ||============================== //
-
-// Updated Dummy Data with 15 Events
 const dummyEvents = [
   { id: 1, name: 'Tech Fest 2026', date: '2026-03-15', venue: 'Main Auditorium', status: 'Upcoming' },
   { id: 2, name: 'Art & Culture Expo', date: '2026-02-20', venue: 'Block C Gallery', status: 'Completed' },
@@ -42,7 +37,6 @@ const dummyEvents = [
   { id: 15, name: 'Placement Drive', date: '2026-06-01', venue: 'Exam Hall', status: 'Planned' }
 ];
 
-// Helper function to choose Chip color based on status
 const getStatusColor = (status) => {
   switch (status) {
     case 'Upcoming': return 'primary';
@@ -78,7 +72,6 @@ const EventsPage = () => {
                 Below is the schedule of all university events.
               </Typography>
 
-              {/* Table Component */}
               <TableContainer component={Paper} sx={{ boxShadow: 2, borderRadius: 2 }}>
                 <Table sx={{ minWidth: 650 }} aria-label="events table">
                   <TableHead sx={{ bgcolor: '#e3f2fd' }}>
@@ -128,7 +121,6 @@ const EventsPage = () => {
                 onPageChange={handleChangePage}
                 onRowsPerPageChange={handleChangeRowsPerPage}
               />
-              {/* End Table */}
 
             </CardContent>
           </Card>

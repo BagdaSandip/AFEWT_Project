@@ -1,12 +1,8 @@
-// material-ui
 import { useTheme } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
 
-// assets
 import { IconBrandAbstract } from '@tabler/icons-react';
-
-// ==============================|| LOGO SVG ||============================== //
 
 const Logo = () => {
     const theme = useTheme();

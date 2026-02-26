@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 
-// material-ui components
 import {
     Grid,
     TextField,
@@ -13,11 +12,8 @@ import {
     CircularProgress
 } from '@mui/material';
 
-// project imports
 import MainCard from 'ui-component/cards/MainCard';
 import { gridSpacing } from 'store/constant';
-
-// ==============================|| ADD DEPARTMENT FORM ||============================== //
 
 const institutes = [
     { value: 'IOT', label: 'Institute of Technology' },
@@ -27,29 +23,24 @@ const institutes = [
 ];
 
 const AddDepartment = () => {
-    // State to handle form inputs
     const [values, setValues] = useState({
         name: '',
         institute: '',
         head: ''
     });
-    const [isLoading, setIsLoading] = useState(false); // Added loading state
+    const [isLoading, setIsLoading] = useState(false);
 
-    // Handle input changes
     const handleChange = (prop) => (event) => {
         setValues({ ...values, [prop]: event.target.value });
     };
 
-    // Handle dummy submission
     const handleSubmit = () => {
-        setIsLoading(true); // Start loading
-        // Simulate API call
+        setIsLoading(true);
         setTimeout(() => {
             console.log('Department Form Submitted with Data:', values);
             alert('Department Added! (Check Console for Data)');
-            // Reset form
             setValues({ name: '', institute: '', head: '' });
-            setIsLoading(false); // Stop loading
+            setIsLoading(false);
         }, 1500);
     };
 
@@ -64,7 +55,6 @@ const AddDepartment = () => {
                             </Typography>
 
                             <Grid container spacing={3}>
-                                {/* Department Name Input */}
                                 <Grid item xs={12} md={6}>
                                     <TextField
                                         fullWidth
@@ -76,7 +66,6 @@ const AddDepartment = () => {
                                     />
                                 </Grid>
 
-                                {/* Institute Select */}
                                 <Grid item xs={12} md={6}>
                                     <TextField
                                         select
@@ -94,7 +83,6 @@ const AddDepartment = () => {
                                     </TextField>
                                 </Grid>
 
-                                {/* Head of Department Input */}
                                 <Grid item xs={12}>
                                     <TextField
                                         fullWidth
@@ -106,7 +94,6 @@ const AddDepartment = () => {
                                     />
                                 </Grid>
 
-                                {/* Submit Button */}
                                 <Grid item xs={12}>
                                     <Stack direction="row" spacing={2} justifyContent="flex-end">
                                         <Button variant="outlined" color="error" onClick={() => setValues({ name: '', institute: '', head: '' })} disabled={isLoading}>

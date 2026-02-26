@@ -16,3 +16,5 @@ export default function NavigationScroll({ children }) {
 }
 
 NavigationScroll.propTypes = { children: PropTypes.oneOfType([PropTypes.node, PropTypes.any]) };
+// ==============================|| NAVIGATION SCROLL TO TOP ||============================== //
+// This component is used to scroll to the top of the page when the route changes. It uses the useEffect hook to scroll to the top of the page when the component is mounted. The children prop is used to render the child components of this component.

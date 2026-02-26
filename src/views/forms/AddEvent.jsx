@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 
-// material-ui components
 import {
     Grid,
     TextField,
@@ -12,37 +11,29 @@ import {
     CircularProgress
 } from '@mui/material';
 
-// project imports
 import MainCard from 'ui-component/cards/MainCard';
 import { gridSpacing } from 'store/constant';
 
-// ==============================|| ADD EVENT FORM ||============================== //
-
 const AddEvent = () => {
-    // State to handle form inputs
     const [values, setValues] = useState({
         name: '',
         date: '',
         venue: '',
         description: ''
     });
-    const [isLoading, setIsLoading] = useState(false); // Added loading state
+    const [isLoading, setIsLoading] = useState(false);
 
-    // Handle input changes
     const handleChange = (prop) => (event) => {
         setValues({ ...values, [prop]: event.target.value });
     };
 
-    // Handle dummy submission
     const handleSubmit = () => {
-        setIsLoading(true); // Start loading
-        // Simulate API call
+        setIsLoading(true);
         setTimeout(() => {
             console.log('Event Form Submitted with Data:', values);
             alert('Event Added! (Check Console for Data)');
-            // Reset form
             setValues({ name: '', date: '', venue: '', description: '' });
-            setIsLoading(false); // Stop loading
+            setIsLoading(false);
         }, 1500);
     };
 
@@ -57,7 +48,6 @@ const AddEvent = () => {
                             </Typography>
 
                             <Grid container spacing={3}>
-                                {/* Event Name Input */}
                                 <Grid item xs={12} md={6}>
                                     <TextField
                                         fullWidth
@@ -69,7 +59,6 @@ const AddEvent = () => {
                                     />
                                 </Grid>
 
-                                {/* Date Input */}
                                 <Grid item xs={12} md={6}>
                                     <TextField
                                         fullWidth
@@ -82,7 +71,6 @@ const AddEvent = () => {
                                     />
                                 </Grid>
 
-                                {/* Venue Input */}
                                 <Grid item xs={12}>
                                     <TextField
                                         fullWidth
@@ -94,7 +82,6 @@ const AddEvent = () => {
                                     />
                                 </Grid>
 
-                                {/* Description Input */}
                                 <Grid item xs={12}>
                                     <TextField
                                         fullWidth
@@ -108,7 +95,6 @@ const AddEvent = () => {
                                     />
                                 </Grid>
 
-                                {/* Submit Button */}
                                 <Grid item xs={12}>
                                     <Stack direction="row" spacing={2} justifyContent="flex-end">
                                         <Button variant="outlined" color="error" onClick={() => setValues({ name: '', date: '', venue: '', description: '' })} disabled={isLoading}>

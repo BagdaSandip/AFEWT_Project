@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 
-// material-ui components
 import {
   Grid,
   TextField,
@@ -12,36 +11,28 @@ import {
   CircularProgress
 } from '@mui/material';
 
-// project imports
 import MainCard from 'ui-component/cards/MainCard';
 import { gridSpacing } from 'store/constant';
 
-// ==============================|| ADD INSTITUTE FORM ||============================== //
-
 const AddInstitutePage = () => {
-  // State to handle form inputs
   const [values, setValues] = useState({
     name: '',
     code: '',
     location: ''
   });
-  const [isLoading, setIsLoading] = useState(false); // Added loading state
+  const [isLoading, setIsLoading] = useState(false);
 
-  // Handle input changes
   const handleChange = (prop) => (event) => {
     setValues({ ...values, [prop]: event.target.value });
   };
 
-  // Handle dummy submission (Week 3 Requirement)
   const handleSubmit = () => {
-    setIsLoading(true); // Start loading
-    // Simulate API call
+    setIsLoading(true);
     setTimeout(() => {
       console.log('Form Submitted with Data:', values);
       alert('Institute Added! (Check Console for Data)');
-      // Reset form
       setValues({ name: '', code: '', location: '' });
-      setIsLoading(false); // Stop loading
+      setIsLoading(false);
     }, 1500);
   };
 
@@ -56,7 +47,6 @@ const AddInstitutePage = () => {
               </Typography>
 
               <Grid container spacing={3}>
-                {/* Institute Name Input */}
                 <Grid item xs={12} md={6}>
                   <TextField
                     fullWidth
@@ -68,7 +58,6 @@ const AddInstitutePage = () => {
                   />
                 </Grid>
 
-                {/* Institute Code Input */}
                 <Grid item xs={12} md={6}>
                   <TextField
                     fullWidth
@@ -80,7 +69,6 @@ const AddInstitutePage = () => {
                   />
                 </Grid>
 
-                {/* Location Input */}
                 <Grid item xs={12}>
                   <TextField
                     fullWidth
@@ -92,7 +80,6 @@ const AddInstitutePage = () => {
                   />
                 </Grid>
 
-                {/* Submit Button */}
                 <Grid item xs={12}>
                   <Stack direction="row" spacing={2} justifyContent="flex-end">
                     <Button variant="outlined" color="error" onClick={() => setValues({ name: '', code: '', location: '' })} disabled={isLoading}>
