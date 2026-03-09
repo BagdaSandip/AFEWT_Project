@@ -22,27 +22,34 @@ import { gridSpacing } from 'store/constant';
 import barChartOptions from './chart-data/total-growth-bar-chart';
 
 const status = [
-  { value: 'month', label: 'Monthly' },
-  { value: 'year', label: 'Yearly' }
+  { value: '2025', label: '2025' },
+  { value: '2024', label: '2024' }
 ];
 
-
-const series = [
+const seriesData2025 = [
   {
-    name: 'Events',
-    data: [1, 2, 1, 3, 2, 1, 4, 2, 1, 3, 2, 2]
+    name: 'Attendees',
+    data: [120, 250, 150, 400, 300, 200, 500, 350, 250, 450, 320, 500]
+  }
+];
+
+const seriesData2024 = [
+  {
+    name: 'Attendees',
+    data: [100, 200, 120, 350, 280, 180, 450, 300, 200, 400, 280, 450]
   }
 ];
 
 
-export default function TotalGrowthBarChart({ isLoading }) {
+export default function EventAttendanceChart({ isLoading }) {
   const theme = useTheme();
   const {
     state: { fontFamily }
   } = useConfig();
 
-  const [value, setValue] = useState('today');
+  const [value, setValue] = useState('2025');
   const [chartOptions, setChartOptions] = useState(barChartOptions);
+  const [series, setSeries] = useState(seriesData2025);
 
   const textPrimary = theme.vars.palette.text.primary;
   const divider = theme.vars.palette.divider;
@@ -57,7 +64,7 @@ export default function TotalGrowthBarChart({ isLoading }) {
     setChartOptions({
       ...barChartOptions,
       chart: { ...barChartOptions.chart, fontFamily: fontFamily },
-      colors: [primary200, primaryDark, secondaryMain, secondaryLight],
+      colors: [primaryDark, primary200, secondaryMain, secondaryLight],
       xaxis: { ...barChartOptions.xaxis, labels: { style: { colors: textPrimary } } },
       yaxis: { ...barChartOptions.yaxis, labels: { style: { colors: textPrimary } } },
       grid: { borderColor: divider },
@@ -65,6 +72,13 @@ export default function TotalGrowthBarChart({ isLoading }) {
       legend: { ...(barChartOptions.legend ?? {}), labels: { ...(barChartOptions.legend?.labels ?? {}), colors: grey500 } }
     });
   }, [fontFamily, primary200, primaryDark, secondaryMain, secondaryLight, textPrimary, grey500, divider]);
+
+  const handleYearChange = (e) => {
+    const year = e.target.value;
+    setValue(year);
+    if (year === '2025') setSeries(seriesData2025);
+    else setSeries(seriesData2024);
+  };
 
   return (
     <>
@@ -75,10 +89,10 @@ export default function TotalGrowthBarChart({ isLoading }) {
           <Stack sx={{ gap: gridSpacing }}>
             <Stack direction="row" sx={{ alignItems: 'center', justifyContent: 'space-between' }}>
               <Stack sx={{ gap: 1 }}>
-                <Typography variant="subtitle2">Event per Month</Typography>
-                <Typography variant="h3">2025</Typography>
+                <Typography variant="subtitle2">Total Attendance</Typography>
+                <Typography variant="h3">Event Attendance Overview</Typography>
               </Stack>
-              <TextField id="standard-select-currency" select value={value} onChange={(e) => setValue(e.target.value)}>
+              <TextField id="standard-select-year" select value={value} onChange={handleYearChange}>
                 {status.map((option) => (
                   <MenuItem key={option.value} value={option.value}>
                     {option.label}
@@ -105,4 +119,4 @@ export default function TotalGrowthBarChart({ isLoading }) {
   );
 }
 
-TotalGrowthBarChart.propTypes = { isLoading: PropTypes.bool };
+EventAttendanceChart.propTypes = { isLoading: PropTypes.bool };

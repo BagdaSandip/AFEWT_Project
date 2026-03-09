@@ -4,19 +4,17 @@ import { useEffect, useState } from 'react';
 import Grid from '@mui/material/Grid';
 
 // project imports
-import EarningCard from './EarningCard';
-import PopularCard from './PopularCard';
-import TotalOrderLineChartCard from './TotalOrderLineChartCard';
-import TotalIncomeDarkCard from '../../../ui-component/cards/TotalIncomeDarkCard';
+import TotalAttendeesCard from './TotalAttendeesCard';
+import RecentRegistrationsCard from './RecentRegistrationsCard';
+import TotalRevenueCard from './TotalRevenueCard';
 import TotalIncomeLightCard from '../../../ui-component/cards/TotalIncomeLightCard';
-import TotalGrowthBarChart from './TotalGrowthBarChart';
-import EventAvailableTwoToneIcon from '@mui/icons-material/EventAvailableTwoTone';
-
+import EventAttendanceChart from './EventAttendanceChart';
 
 import { gridSpacing } from 'store/constant';
 
 // assets
-import StorefrontTwoToneIcon from '@mui/icons-material/StorefrontTwoTone';
+import EventAvailableTwoToneIcon from '@mui/icons-material/EventAvailableTwoTone';
+import EventBusyTwoToneIcon from '@mui/icons-material/EventBusyTwoTone';
 
 // ==============================|| DEFAULT DASHBOARD ||============================== //
 
@@ -32,22 +30,28 @@ export default function Dashboard() {
       <Grid size={12}>
         <Grid container spacing={gridSpacing}>
           <Grid size={{ lg: 4, md: 6, sm: 6, xs: 12 }}>
-            <EarningCard isLoading={isLoading} />
+            <TotalAttendeesCard isLoading={isLoading} />
           </Grid>
           <Grid size={{ lg: 4, md: 6, sm: 6, xs: 12 }}>
-            <TotalOrderLineChartCard isLoading={isLoading} />
+            <TotalRevenueCard isLoading={isLoading} />
           </Grid>
           <Grid size={{ lg: 4, md: 12, sm: 12, xs: 12 }}>
             <Grid container spacing={gridSpacing}>
               <Grid size={{ sm: 6, xs: 12, md: 6, lg: 12 }}>
-                <TotalIncomeDarkCard isLoading={isLoading} />
+                <TotalIncomeLightCard
+                  isLoading={isLoading}
+                  total={8}
+                  label="Active Events"
+                  icon={<EventAvailableTwoToneIcon fontSize="inherit" />}
+                />
               </Grid>
               <Grid size={{ sm: 6, xs: 12, md: 6, lg: 12 }}>
-              <TotalIncomeLightCard
-              isLoading={isLoading}
-              total={12}
-              label="Total Events"
-              icon={<EventAvailableTwoToneIcon fontSize="inherit" />}/>
+                <TotalIncomeLightCard
+                  isLoading={isLoading}
+                  total={3}
+                  label="Upcoming Events"
+                  icon={<EventBusyTwoToneIcon fontSize="inherit" />}
+                />
               </Grid>
             </Grid>
           </Grid>
@@ -56,10 +60,10 @@ export default function Dashboard() {
       <Grid size={12}>
         <Grid container spacing={gridSpacing}>
           <Grid size={{ xs: 12, md: 8 }}>
-            <TotalGrowthBarChart isLoading={isLoading} />
+            <EventAttendanceChart isLoading={isLoading} />
           </Grid>
           <Grid size={{ xs: 12, md: 4 }}>
-            <PopularCard isLoading={isLoading} />
+            <RecentRegistrationsCard isLoading={isLoading} />
           </Grid>
         </Grid>
       </Grid>

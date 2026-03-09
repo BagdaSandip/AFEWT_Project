@@ -19,14 +19,14 @@ import MainCard from 'ui-component/cards/MainCard';
 import SkeletonTotalOrderCard from 'ui-component/cards/Skeleton/EarningCard';
 
 // assets
-import LocalMallOutlinedIcon from '@mui/icons-material/LocalMallOutlined';
-import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
+import LocalAtmTwoToneIcon from '@mui/icons-material/LocalAtmTwoTone';
+import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 
 // data
-const monthlyData = [{ data: [15, 22, 18, 30, 25, 28, 20, 35] }];
-const yearlyData = [{ data: [120, 140, 160, 180, 200, 220, 230, 240] }];
+const monthlyData = [{ name: 'Revenue', data: [1500, 2200, 1800, 3000, 2500, 2800, 2000, 3500] }];
+const yearlyData = [{ name: 'Revenue', data: [12000, 14000, 16000, 18000, 20000, 22000, 23000, 24000] }];
 
-export default function TotalOrderLineChartCard({ isLoading }) {
+export default function TotalRevenueCard({ isLoading }) {
   const theme = useTheme();
 
   const [timeValue, setTimeValue] = React.useState(false);
@@ -50,7 +50,7 @@ export default function TotalOrderLineChartCard({ isLoading }) {
           border={false}
           content={false}
           sx={{
-            bgcolor: 'primary.dark',
+            bgcolor: 'secondary.dark',
             color: '#fff',
             overflow: 'hidden',
             position: 'relative',
@@ -63,7 +63,7 @@ export default function TotalOrderLineChartCard({ isLoading }) {
               position: 'absolute',
               width: 210,
               height: 210,
-              background: theme.vars.palette.primary[800],
+              background: theme.vars.palette.secondary[800],
               borderRadius: '50%',
               top: { xs: -85 },
               right: { xs: -95 }
@@ -73,7 +73,7 @@ export default function TotalOrderLineChartCard({ isLoading }) {
               position: 'absolute',
               width: 210,
               height: 210,
-              background: theme.vars.palette.primary[800],
+              background: theme.vars.palette.secondary[800],
               borderRadius: '50%',
               top: { xs: -125 },
               right: { xs: -15 },
@@ -88,12 +88,12 @@ export default function TotalOrderLineChartCard({ isLoading }) {
                 sx={{
                   ...theme.typography.largeAvatar,
                   borderRadius: 2,
-                  bgcolor: 'primary.800',
+                  bgcolor: 'secondary.800',
                   color: 'common.white',
                   mt: 1
                 }}
               >
-                <LocalMallOutlinedIcon fontSize="inherit" />
+                <LocalAtmTwoToneIcon fontSize="large" />
               </Avatar>
               <Box>
                 <Button
@@ -122,12 +122,16 @@ export default function TotalOrderLineChartCard({ isLoading }) {
                 <Grid size={6}>
                   <Box>
                     <Stack direction="row" sx={{ alignItems: 'center' }}>
-                                  <Typography sx={{ fontSize: '2.125rem', fontWeight: 500, mr: 1, mt: 1.75, mb: 0.75 }}> {timeValue ? 120 : 240}</Typography>
-                      <Avatar sx={{ ...theme.typography.smallAvatar, bgcolor: 'primary.200', color: 'primary.dark' }}>
-                        <ArrowDownwardIcon fontSize="inherit" sx={{ transform: 'rotate3d(1, 1, 1, 45deg)' }} />
+                      <Typography sx={{ fontSize: '2.125rem', fontWeight: 500, mr: 1, mt: 1.75, mb: 0.75 }}>
+                        ${timeValue ? '9,820' : '45,210'}
+                      </Typography>
+                      <Avatar sx={{ ...theme.typography.smallAvatar, bgcolor: 'secondary.200', color: 'secondary.dark' }}>
+                        <ArrowUpwardIcon fontSize="inherit" sx={{ transform: 'rotate3d(1, 1, 1, 45deg)' }} />
                       </Avatar>
                     </Stack>
-                        <Typography sx={{fontSize: '1rem',fontWeight: 500,color: 'primary.200'}}> Total Participants</Typography>
+                    <Typography sx={{ fontSize: '1rem', fontWeight: 500, color: 'secondary.200' }}>
+                      Total Revenue
+                    </Typography>
                   </Box>
                 </Grid>
                 <Grid
@@ -150,4 +154,4 @@ export default function TotalOrderLineChartCard({ isLoading }) {
   );
 }
 
-TotalOrderLineChartCard.propTypes = { isLoading: PropTypes.bool };
+TotalRevenueCard.propTypes = { isLoading: PropTypes.bool };
