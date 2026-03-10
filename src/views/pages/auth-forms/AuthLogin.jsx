@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 // material-ui
 import Button from '@mui/material/Button';
@@ -64,12 +65,16 @@ export default function AuthLogin() {
 
       if (response.ok) {
         localStorage.setItem('isLoggedIn', 'true');
+        toast.success('Login Successful!');
         navigate('/dashboard/default');
       } else {
-        setError(data.message || 'Login failed');
+        const errorMsg = data.message || 'Login failed';
+        setError(errorMsg);
+        toast.error(errorMsg);
       }
     } catch (err) {
       setError('An error occurred. Please try again.');
+      toast.error('An error occurred. Please try again.');
     } finally {
       setIsLoading(false);
     }

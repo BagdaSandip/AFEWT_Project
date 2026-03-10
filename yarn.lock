@@ -2047,6 +2047,7 @@ __metadata:
     react-dom: "npm:19.2.0"
     react-router: "npm:7.9.6"
     react-router-dom: "npm:7.9.6"
+    react-toastify: "npm:^11.0.5"
     sass: "npm:1.94.2"
     simplebar-react: "npm:3.3.2"
     slick-carousel: "npm:1.8.1"
@@ -5045,6 +5046,18 @@ __metadata:
     react-dom:
       optional: true
   checksum: 10c0/2a177bbe19021e3b8211df849ea5b3f3a4f482327e6de3341aaeaa4f1406dc9be7b675b229eefea6761e04a59a40ccaaf8188f2ee88eb2d0b2a6b6448daea368
+  languageName: node
+  linkType: hard
+
+"react-toastify@npm:^11.0.5":
+  version: 11.0.5
+  resolution: "react-toastify@npm:11.0.5"
+  dependencies:
+    clsx: "npm:^2.1.1"
+  peerDependencies:
+    react: ^18 || ^19
+    react-dom: ^18 || ^19
+  checksum: 10c0/50f5b81323ebb1957b2efd0963fac24aa1407155d16ab756ffd6d0f42f8af17e796b3958a9fce13e9d1b945d6c3a5a9ebf13529478474d8a2af4bf1dd0db67d2
   languageName: node
   linkType: hard
 

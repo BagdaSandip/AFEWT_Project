@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 // material-ui
 import Button from '@mui/material/Button';
@@ -81,13 +82,16 @@ export default function AuthRegister() {
       const data = await response.json();
 
       if (response.ok) {
-        // Auto login or redirect to login
+        toast.success('Registration successful! You can now log in.');
         navigate('/');
       } else {
-        setError(data.message || 'Registration failed');
+        const errorMsg = data.message || 'Registration failed';
+        setError(errorMsg);
+        toast.error(errorMsg);
       }
     } catch (err) {
       setError('An error occurred. Please try again.');
+      toast.error('An error occurred. Please try again.');
     } finally {
       setIsLoading(false);
     }

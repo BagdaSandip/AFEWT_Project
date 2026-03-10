@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
 
 // material-ui components
 import {
@@ -168,12 +169,13 @@ const Event = () => {
       if (response.ok) {
         handleCloseDialog();
         fetchData(); // refresh list
+        toast.success(`Event ${isEditing ? 'updated' : 'created'} successfully!`);
       } else {
         const errorData = await response.json();
-        alert(errorData.message || 'Error saving event');
+        toast.error(errorData.message || 'Error saving event');
       }
     } catch (err) {
-      console.error('Submit error:', err);
+      toast.error('Failed to communicate with server');
     }
   };
 
@@ -186,12 +188,13 @@ const Event = () => {
         });
         if (response.ok) {
           fetchData(); // refresh list
+          toast.success("Event deleted successfully");
         } else {
           const errorData = await response.json();
-          alert(errorData.message || 'Error deleting event. Verify you are logged in as Admin.');
+          toast.error(errorData.message || 'Error deleting event. Verify you are logged in as Admin.');
         }
       } catch (err) {
-        console.error('Delete error:', err);
+        toast.error('Failed to communicate with server');
       }
     }
   };

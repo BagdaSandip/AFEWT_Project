@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
 
 // material-ui components
 import {
@@ -22,7 +23,8 @@ import {
   DialogContent,
   DialogTitle,
   TextField,
-  IconButton
+  IconButton,
+  MenuItem
 } from '@mui/material';
 
 // icons
@@ -149,12 +151,13 @@ const Institute = () => {
       if (response.ok) {
         handleCloseDialog();
         fetchInstitutes(); // refresh list
+        toast.success(`Institute ${isEditing ? 'updated' : 'created'} successfully!`);
       } else {
         const errorData = await response.json();
-        alert(errorData.message || 'Error saving institute');
+        toast.error(errorData.message || 'Error saving institute');
       }
     } catch (err) {
-      console.error('Submit error:', err);
+      toast.error('Failed to communicate with server');
     }
   };
 
@@ -167,12 +170,13 @@ const Institute = () => {
         });
         if (response.ok) {
           fetchInstitutes(); // refresh list
+          toast.success("Institute deleted successfully");
         } else {
           const errorData = await response.json();
-          alert(errorData.message || 'Error deleting institute. Verify you are logged in as Admin.');
+          toast.error(errorData.message || 'Error deleting institute. Verify you are logged in as Admin.');
         }
       } catch (err) {
-        console.error('Delete error:', err);
+        toast.error('Failed to communicate with server');
       }
     }
   };
