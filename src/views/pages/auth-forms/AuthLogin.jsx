@@ -29,6 +29,10 @@ export default function AuthLogin() {
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false); // Added loading state
 
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+
   const navigate = useNavigate(); // ✅ navigation hook
 
   const handleClickShowPassword = () => {
@@ -40,29 +44,48 @@ export default function AuthLogin() {
   };
 
   // ✅ LOGIN HANDLER (THIS WAS MISSING)
-  const handleLogin = () => {
+  const handleLogin = async () => {
     setIsLoading(true); // Start loading
+    setError('');
+    
+    try {
+      const response = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          EmailAddress: email,
+          UserPassword: password
+        })
+      });
 
-    // Simulate API call
-    setTimeout(() => {
-      // temporary login success
-      localStorage.setItem('isLoggedIn', 'true');
-      setIsLoading(false); // Stop loading (optional as we navigate away)
-      // redirect to dashboard
-      navigate('/dashboard/default');
-    }, 1500);
+      const data = await response.json();
+
+      if (response.ok) {
+        localStorage.setItem('isLoggedIn', 'true');
+        navigate('/dashboard/default');
+      } else {
+        setError(data.message || 'Login failed');
+      }
+    } catch (err) {
+      setError('An error occurred. Please try again.');
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
     <>
       <CustomFormControl fullWidth>
         <InputLabel htmlFor="outlined-adornment-email-login">
-          Email Address / Username
+          Email Address
         </InputLabel>
         <OutlinedInput
           id="outlined-adornment-email-login"
           type="email"
-          value="info@codedthemes.com"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
           name="email"
         />
       </CustomFormControl>
@@ -74,7 +97,8 @@ export default function AuthLogin() {
         <OutlinedInput
           id="outlined-adornment-password-login"
           type={showPassword ? 'text' : 'password'}
-          value="123456"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
           name="password"
           endAdornment={
             <InputAdornment position="end">
@@ -92,6 +116,13 @@ export default function AuthLogin() {
           label="Password"
         />
       </CustomFormControl>
+      {error && (
+        <Box sx={{ mt: 2 }}>
+          <Typography color="error" variant="body2">
+            {error}
+          </Typography>
+        </Box>
+      )}
 
       <Grid container sx={{ alignItems: 'center', justifyContent: 'space-between' }}>
         <Grid>

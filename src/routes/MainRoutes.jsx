@@ -8,16 +8,14 @@ import Loadable from 'ui-component/Loadable';
 const DashboardDefault = Loadable(lazy(() => import('views/dashboard/Default')));
 
 // utilities routing
-const UtilsTypography = Loadable(lazy(() => import('views/utilities/Typography')));
-const UtilsColor = Loadable(lazy(() => import('views/utilities/Color')));
-const UtilsShadow = Loadable(lazy(() => import('views/utilities/Shadow')));
+const UtilsInstitute = Loadable(lazy(() => import('views/utilities/Institute')));
+const UtilsDepartment = Loadable(lazy(() => import('views/utilities/Department')));
+const UtilsEvent = Loadable(lazy(() => import('views/utilities/Event')));
 
 // sample page routing
 const SamplePage = Loadable(lazy(() => import('views/sample-page')));
 
 // forms routing
-const AddDepartment = Loadable(lazy(() => import('views/forms/AddDepartment')));
-const AddEvent = Loadable(lazy(() => import('views/forms/AddEvent')));
 const AddGroup = Loadable(lazy(() => import('views/forms/AddGroup')));
 const AddParticipant = Loadable(lazy(() => import('views/forms/AddParticipant')));
 
@@ -36,28 +34,20 @@ const MainRoutes = {
       element: <DashboardDefault />
     },
     {
-      path: 'typography',
-      element: <UtilsTypography />
+      path: 'institute',
+      element: <UtilsInstitute />
     },
     {
-      path: 'color',
-      element: <UtilsColor />
+      path: 'department',
+      element: <UtilsDepartment />
     },
     {
-      path: 'shadow',
-      element: <UtilsShadow />
+      path: 'event',
+      element: <UtilsEvent />
     },
     {
       path: 'sample-page',
       element: <SamplePage />
-    },
-    {
-      path: '/forms/add-department',
-      element: <AddDepartment />
-    },
-    {
-      path: '/forms/add-event',
-      element: <AddEvent />
     },
     {
       path: '/forms/add-group',

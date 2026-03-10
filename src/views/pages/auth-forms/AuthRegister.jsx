@@ -38,7 +38,9 @@ export default function AuthRegister() {
   const [fname, setFname] = useState('');
   const [lname, setLname] = useState('');
   const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
 
   const navigate = useNavigate();
 
@@ -57,15 +59,38 @@ export default function AuthRegister() {
     setPassword(value);
   };
 
-  const handleRegister = () => {
-    setIsLoading(true); // Start loading
-    // Simulate API call
-    setTimeout(() => {
-      // temporary login success
-      localStorage.setItem('isLoggedIn', 'true');
+  const handleRegister = async () => {
+    setIsLoading(true);
+    setError('');
+
+    try {
+      const response = await fetch('/api/auth/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          UserName: `${fname} ${lname}`.trim(),
+          EmailAddress: email,
+          PhoneNumber: phone,
+          UserPassword: password,
+          isAdmin: false
+        })
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        // Auto login or redirect to login
+        navigate('/');
+      } else {
+        setError(data.message || 'Registration failed');
+      }
+    } catch (err) {
+      setError('An error occurred. Please try again.');
+    } finally {
       setIsLoading(false);
-      navigate('/dashboard/default');
-    }, 1500);
+    }
   };
 
   useEffect(() => {
@@ -105,7 +130,7 @@ export default function AuthRegister() {
         </Grid>
       </Grid>
       <CustomFormControl fullWidth>
-        <InputLabel htmlFor="outlined-adornment-email-register">Email Address / Username</InputLabel>
+        <InputLabel htmlFor="outlined-adornment-email-register">Email Address</InputLabel>
         <OutlinedInput
           id="outlined-adornment-email-register"
           type="email"
@@ -115,6 +140,16 @@ export default function AuthRegister() {
         />
       </CustomFormControl>
 
+      <CustomFormControl fullWidth>
+        <InputLabel htmlFor="outlined-adornment-phone-register">Phone Number</InputLabel>
+        <OutlinedInput
+          id="outlined-adornment-phone-register"
+          type="text"
+          value={phone}
+          name="phone"
+          onChange={(e) => setPhone(e.target.value)}
+        />
+      </CustomFormControl>
       <CustomFormControl fullWidth>
         <InputLabel htmlFor="outlined-adornment-password-register">Password</InputLabel>
         <OutlinedInput
@@ -139,6 +174,14 @@ export default function AuthRegister() {
           }
         />
       </CustomFormControl>
+
+      {error && (
+        <Box sx={{ mb: 2 }}>
+          <Typography color="error" variant="body2">
+            {error}
+          </Typography>
+        </Box>
+      )}
 
       {strength !== 0 && (
         <FormControl fullWidth>

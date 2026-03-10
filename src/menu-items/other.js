@@ -12,30 +12,6 @@ const other = {
   type: 'group',
   children: [
     {
-      id: 'add-institute',
-      title: 'Add Institute',
-      type: 'item',
-      url: '/sample-page',
-      icon: icons.IconBuildingFactory2,
-      breadcrumbs: false
-    },
-    {
-      id: 'add-department',
-      title: 'Add Department',
-      type: 'item',
-      url: '/forms/add-department',
-      icon: icons.IconHierarchy2,
-      breadcrumbs: false
-    },
-    {
-      id: 'add-event',
-      title: 'Add Event',
-      type: 'item',
-      url: '/forms/add-event',
-      icon: icons.IconCalendarEvent,
-      breadcrumbs: false
-    },
-    {
       id: 'add-group',
       title: 'Add Group',
       type: 'item',

@@ -23,7 +23,7 @@ const utilities = {
       id: 'institutes', // Changed ID
       title: 'Institutes', // Changed Title (Week 1 Task)
       type: 'item',
-      url: '/typography', // Keeps pointing to the same file for now so it doesn't break
+      url: '/institute',
       icon: icons.IconSchool,
       breadcrumbs: false
     },
@@ -31,7 +31,7 @@ const utilities = {
       id: 'departments', // Changed ID
       title: 'Departments', // Changed Title (Week 1 Task)
       type: 'item',
-      url: '/color', // Keeps pointing to the same file
+      url: '/department',
       icon: icons.IconHierarchy2,
       breadcrumbs: false
     },
@@ -39,7 +39,7 @@ const utilities = {
       id: 'events', // Changed ID
       title: 'Events', // Changed Title (Week 1 Task)
       type: 'item',
-      url: '/shadow', // Keeps pointing to the same file
+      url: '/event',
       icon: icons.IconCalendarEvent,
       breadcrumbs: false
     }
