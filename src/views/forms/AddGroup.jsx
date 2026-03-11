@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { toast } from 'react-toastify';
 
 // material-ui components
 import {
@@ -19,37 +20,68 @@ import { gridSpacing } from 'store/constant';
 
 // ==============================|| ADD GROUP FORM ||============================== //
 
-const events = [
-    { value: 'techfest', label: 'Tech Fest 2026' },
-    { value: 'cultural', label: 'Art & Culture Expo' },
-    { value: 'sports', label: 'Annual Sports Day' }
-];
-
 const AddGroup = () => {
     // State to handle form inputs
+    const [events, setEvents] = useState([]);
     const [values, setValues] = useState({
         name: '',
         event: '',
         members: ''
     });
-    const [isLoading, setIsLoading] = useState(false); // Added loading state
+    const [isLoading, setIsLoading] = useState(false);
+
+    // Fetch Events on Load
+    useEffect(() => {
+        const fetchEvents = async () => {
+            try {
+                const res = await fetch("/api/events", { credentials: 'include' });
+                const data = await res.json();
+                if (res.ok && data && data.events) {
+                    setEvents(data.events);
+                }
+            } catch (err) {
+                toast.error("Failed to load events");
+            }
+        };
+        fetchEvents();
+    }, []);
 
     // Handle input changes
     const handleChange = (prop) => (event) => {
         setValues({ ...values, [prop]: event.target.value });
     };
 
-    // Handle dummy submission
-    const handleSubmit = () => {
+    // Handle API submission
+    const handleSubmit = async () => {
+        if (!values.name || !values.event) {
+            toast.error("Group Name and Event are required!");
+            return;
+        }
+
         setIsLoading(true); // Start loading
-        // Simulate API call
-        setTimeout(() => {
-            console.log('Group Form Submitted with Data:', values);
-            alert('Group Added! (Check Console for Data)');
-            // Reset form
-            setValues({ name: '', event: '', members: '' });
+        try {
+            const res = await fetch(`/api/events/${values.event}/groups`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                credentials: 'include',
+                body: JSON.stringify({ GroupName: values.name })
+            });
+
+            const data = await res.json();
+
+            if (res.ok) {
+                toast.success("Group created successfully!");
+                // Reset form
+                setValues({ name: '', event: '', members: '' });
+            } else {
+                toast.error(data.message || "Failed to create group");
+            }
+        } catch (err) {
+            toast.error("An error occurred. Please try again.");
+            console.error(err);
+        } finally {
             setIsLoading(false); // Stop loading
-        }, 1500);
+        }
     };
 
     return (
@@ -72,6 +104,7 @@ const AddGroup = () => {
                                         value={values.name}
                                         onChange={handleChange('name')}
                                         variant="outlined"
+                                        required
                                     />
                                 </Grid>
 
@@ -84,16 +117,18 @@ const AddGroup = () => {
                                         value={values.event}
                                         onChange={handleChange('event')}
                                         variant="outlined"
+                                        required
                                     >
+                                        <MenuItem value="" disabled><em>-- Select an Event --</em></MenuItem>
                                         {events.map((option) => (
-                                            <MenuItem key={option.value} value={option.value}>
-                                                {option.label}
+                                            <MenuItem key={option._id} value={option._id}>
+                                                {option.EventName}
                                             </MenuItem>
                                         ))}
                                     </TextField>
                                 </Grid>
 
-                                {/* Member Count Input */}
+                                {/* Member Count Input (Optional/Informational for now) */}
                                 <Grid item xs={12}>
                                     <TextField
                                         fullWidth

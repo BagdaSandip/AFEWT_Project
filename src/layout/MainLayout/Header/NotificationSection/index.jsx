@@ -1,5 +1,6 @@
 import { Activity, useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
@@ -127,7 +128,7 @@ export default function NotificationSection() {
                           <Typography variant="subtitle1">All Notification</Typography>
                           <Chip size="small" label="01" variant="filled" sx={{ color: 'background.default', bgcolor: 'warning.dark' }} />
                         </Stack>
-                        <Typography component={Link} to="#" variant="subtitle2" sx={{ color: 'primary.main' }}>
+                        <Typography component={Link} to="#" variant="subtitle2" sx={{ color: 'primary.main' }} onClick={() => toast.info('Notifications marked as read')}>
                           Mark as all read
                         </Typography>
                       </Stack>
@@ -153,7 +154,7 @@ export default function NotificationSection() {
                       </Box>
                     </Stack>
                     <CardActions sx={{ p: 1.25, justifyContent: 'center' }}>
-                      <Button size="small" disableElevation>
+                      <Button size="small" disableElevation onClick={() => toast.info('View all notifications coming soon!')}>
                         View All
                       </Button>
                     </CardActions>

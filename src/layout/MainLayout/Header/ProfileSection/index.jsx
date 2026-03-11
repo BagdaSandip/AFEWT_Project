@@ -1,4 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
@@ -68,6 +70,23 @@ export default function ProfileSection() {
 
     prevOpen.current = open;
   }, [open]);
+
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    try {
+      const response = await fetch('/api/auth/logout', { method: 'POST' });
+      if (response.ok) {
+        localStorage.removeItem('isLoggedIn');
+        toast.success("Logged out successfully");
+        navigate('/pages/login', { replace: true });
+      } else {
+        toast.error("Logout failed");
+      }
+    } catch (err) {
+      toast.error("An error occurred during logout");
+    }
+  };
 
   return (
     <>
@@ -176,13 +195,25 @@ export default function ProfileSection() {
                           '& .MuiListItemButton-root': { mt: 0.5 }
                         }}
                       >
-                        <ListItemButton sx={{ borderRadius: `${borderRadius}px` }}>
+                        <ListItemButton 
+                          sx={{ borderRadius: `${borderRadius}px` }}
+                          onClick={() => {
+                            toast.info("Account Settings coming soon!");
+                            handleClose(new Event('click'));
+                          }}
+                        >
                           <ListItemIcon>
                             <IconSettings stroke={1.5} size="20px" />
                           </ListItemIcon>
                           <ListItemText primary={<Typography variant="body2">Account Settings</Typography>} />
                         </ListItemButton>
-                        <ListItemButton sx={{ borderRadius: `${borderRadius}px` }}>
+                        <ListItemButton 
+                          sx={{ borderRadius: `${borderRadius}px` }}
+                          onClick={() => {
+                            toast.info("Social Profile coming soon!");
+                            handleClose(new Event('click'));
+                          }}
+                        >
                           <ListItemIcon>
                             <IconUser stroke={1.5} size="20px" />
                           </ListItemIcon>
@@ -203,7 +234,10 @@ export default function ProfileSection() {
                             }
                           />
                         </ListItemButton>
-                        <ListItemButton sx={{ borderRadius: `${borderRadius}px` }}>
+                        <ListItemButton 
+                          sx={{ borderRadius: `${borderRadius}px` }}
+                          onClick={handleLogout}
+                        >
                           <ListItemIcon>
                             <IconLogout stroke={1.5} size="20px" />
                           </ListItemIcon>

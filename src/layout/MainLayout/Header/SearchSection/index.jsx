@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
+import { toast } from 'react-toastify';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
@@ -62,7 +63,7 @@ function MobileSearch({ value, setValue, popupState }) {
       }
       endAdornment={
         <InputAdornment position="end">
-          <HeaderAvatar>
+          <HeaderAvatar onClick={() => toast.info('Advanced search filters coming soon!')}>
             <IconAdjustmentsHorizontal stroke={1.5} size="20px" />
           </HeaderAvatar>
           <Box sx={{ ml: 2 }}>
@@ -145,7 +146,7 @@ export default function SearchSection() {
           }
           endAdornment={
             <InputAdornment position="end">
-              <HeaderAvatar>
+              <HeaderAvatar onClick={() => toast.info('Advanced search filters coming soon!')}>
                 <IconAdjustmentsHorizontal stroke={1.5} size="20px" />
               </HeaderAvatar>
             </InputAdornment>

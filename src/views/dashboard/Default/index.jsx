@@ -6,6 +6,7 @@ import Grid from '@mui/material/Grid';
 // project imports
 import TotalAttendeesCard from './TotalAttendeesCard';
 import RecentRegistrationsCard from './RecentRegistrationsCard';
+import RecentWinnersCard from './RecentWinnersCard';
 import TotalRevenueCard from './TotalRevenueCard';
 import TotalIncomeLightCard from '../../../ui-component/cards/TotalIncomeLightCard';
 import EventAttendanceChart from './EventAttendanceChart';
@@ -63,7 +64,14 @@ export default function Dashboard() {
             <EventAttendanceChart isLoading={isLoading} />
           </Grid>
           <Grid size={{ xs: 12, md: 4 }}>
-            <RecentRegistrationsCard isLoading={isLoading} />
+            <Grid container spacing={gridSpacing}>
+              <Grid size={12}>
+                <RecentRegistrationsCard isLoading={isLoading} />
+              </Grid>
+              <Grid size={12}>
+                <RecentWinnersCard isLoading={isLoading} />
+              </Grid>
+            </Grid>
           </Grid>
         </Grid>
       </Grid>
